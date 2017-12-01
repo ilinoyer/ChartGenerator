@@ -9,7 +9,8 @@ import javafx.stage.Stage;
 public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/MainWindow.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("MainWindow.fxml"));
+        Parent root = loader.load();
         primaryStage.setTitle("Chart Generator");
         primaryStage.setScene(new Scene(root, 600, 400));
         primaryStage.setResizable(false);
