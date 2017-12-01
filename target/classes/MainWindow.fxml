@@ -1,45 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1">
-    <children>
-        <AnchorPane prefHeight="100.0" prefWidth="200.0">
-            <children>
-                <Label alignment="CENTER" text="Add Task" AnchorPane.leftAnchor="5" AnchorPane.rightAnchor="5">
-                    <font>
-                        <Font name="System Bold" size="30.0" />
-                    </font></Label>
-            </children>
-        </AnchorPane>
-        <AnchorPane prefHeight="200.0" prefWidth="200.0">
-            <children>
-                <Label layoutX="100" text="Subject:" AnchorPane.topAnchor="50" />
-                <TextField layoutX="170" minWidth="100" prefHeight="25" AnchorPane.topAnchor="50" />
-            </children></AnchorPane>
-        <AnchorPane prefHeight="270.0" prefWidth="200.0">
-            <children>
-                <TextArea layoutX="170" prefHeight="180" prefWidth="150" wrapText="true" AnchorPane.bottomAnchor="5" AnchorPane.topAnchor="5" />
-                <Label layoutX="100" text="Content:" />
-            </children></AnchorPane>
-        <AnchorPane prefHeight="200.0" prefWidth="200.0">
-            <children>
-                <DatePicker layoutX="170" layoutY="50" AnchorPane.topAnchor="15" />
-                <Label layoutX="100" layoutY="50" text="Until:" AnchorPane.topAnchor="15" />
-            </children>
-        </AnchorPane>
-        <AnchorPane prefHeight="100.0" prefWidth="200.0">
-            <children>
-                <Button mnemonicParsing="false" text="Add" AnchorPane.bottomAnchor="5"  AnchorPane.rightAnchor="5" AnchorPane.topAnchor="5" minWidth="200"/>
-                <Button mnemonicParsing="false" text="Cancel" AnchorPane.bottomAnchor="5" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" minWidth="200" />
-            </children>
-        </AnchorPane>
-    </children>
-</VBox>
+<AnchorPane xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainWindowController">
+   <children>
+      <GridPane layoutX="95.0" layoutY="65.0" prefHeight="400.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="327.0" minWidth="10.0" prefWidth="301.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="301.0" minWidth="10.0" prefWidth="299.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Label text="Chart type:" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets right="50.0" />
+               </GridPane.margin>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label text="Data series number:" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets right="50.0" />
+               </GridPane.margin>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Button fx:id="addFileButton" mnemonicParsing="false" prefHeight="32.0" text="Add data file" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+            <Button mnemonicParsing="false" prefHeight="35.0" text="Advanced Settings" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+            <ComboBox fx:id="chartTypeBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
+            <ComboBox fx:id="seriesAmountBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
+            <Button mnemonicParsing="false" text="Generate" textAlignment="CENTER" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Button>
+            <Label text="Chart Generator" GridPane.columnSpan="2" GridPane.halignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="40.0" />
+               </font>
+            </Label>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>

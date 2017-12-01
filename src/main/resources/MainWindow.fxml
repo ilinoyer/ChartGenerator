@@ -10,10 +10,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainWindowController">
    <children>
-      <GridPane layoutX="95.0" layoutY="65.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <GridPane layoutX="95.0" layoutY="65.0" prefHeight="400.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="327.0" minWidth="10.0" prefWidth="301.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="301.0" minWidth="10.0" prefWidth="299.0" />
@@ -26,7 +25,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Label text="Typ wykresu:" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+            <Label text="Chart type:" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets right="50.0" />
                </GridPane.margin>
@@ -34,7 +33,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label text="Ilość serii danych:" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+            <Label text="Data series number:" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets right="50.0" />
                </GridPane.margin>
@@ -42,16 +41,16 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Button mnemonicParsing="false" prefHeight="32.0" text="Dodaj plik z danymi" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-            <Button mnemonicParsing="false" prefHeight="35.0" text="Ustawienia zaawansowane" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-            <ComboBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <ComboBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Button mnemonicParsing="false" text="Generuj" textAlignment="CENTER" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+            <Button fx:id="addFileButton" mnemonicParsing="false" prefHeight="32.0" text="Add data file" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+            <Button mnemonicParsing="false" prefHeight="35.0" text="Advanced Settings" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+            <ComboBox fx:id="chartTypeBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
+            <ComboBox fx:id="seriesAmountBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
+            <Button mnemonicParsing="false" text="Generate" textAlignment="CENTER" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Button>
-            <Label text="Generator Wykresów" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.vgrow="SOMETIMES">
+            <Label text="Chart Generator" GridPane.columnSpan="2" GridPane.halignment="CENTER">
                <font>
                   <Font name="System Bold" size="40.0" />
                </font>
