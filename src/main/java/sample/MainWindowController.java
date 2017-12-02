@@ -22,6 +22,9 @@ public class MainWindowController implements Initializable{
 
     final FileChooser fileChooser = new FileChooser();
 
+    private ChartObject chartObject;
+    private File dataFile;
+
     @FXML
     private ComboBox<String> chartTypeBox;
 
@@ -58,7 +61,7 @@ public class MainWindowController implements Initializable{
         addFileButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                File file = fileChooser.showOpenDialog(seriesAmountBox.getScene().getWindow());
+                dataFile = fileChooser.showOpenDialog(seriesAmountBox.getScene().getWindow());
             }
         });
 
@@ -78,6 +81,29 @@ public class MainWindowController implements Initializable{
                     stage.show();
 
                 } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        generateButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                chartObject = new ChartObject(chartTypeBox.getValue(), Integer.parseInt(seriesAmountBox.getValue()), dataFile);
+
+                try
+                {
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("/ChartWindow.fxml"));
+                    fxmlLoader.setController(new ChartController(chartObject));
+                    Scene scene = new Scene((Parent) fxmlLoader.load(), 1100, 500);
+                    Stage stage = new Stage();
+                    stage.setTitle("Chart Window");
+                    stage.setScene(scene);
+                    stage.show();
+
+                }catch(Exception e)
+                {
                     e.printStackTrace();
                 }
             }

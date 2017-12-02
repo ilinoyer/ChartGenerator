@@ -45,7 +45,7 @@
             <Button fx:id="settingsButton" mnemonicParsing="false" prefHeight="35.0" text="Advanced Settings" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
             <ComboBox fx:id="chartTypeBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
             <ComboBox fx:id="seriesAmountBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
-            <Button mnemonicParsing="false" text="Generate" textAlignment="CENTER" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+            <Button fx:id="generateButton" mnemonicParsing="false" text="Generate" textAlignment="CENTER" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
