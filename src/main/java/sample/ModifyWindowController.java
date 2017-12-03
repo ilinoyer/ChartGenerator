@@ -14,12 +14,12 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ModifyController implements Initializable{
+public class ModifyWindowController implements Initializable{
 
     private DataSeries dataSeriesToModify;
     private SimpleBooleanProperty isChanged;
 
-    public ModifyController(DataSeries dataSeriesToModify, SimpleBooleanProperty isChanged)
+    public ModifyWindowController(DataSeries dataSeriesToModify, SimpleBooleanProperty isChanged)
     {
         this.isChanged = isChanged;
         this.dataSeriesToModify = dataSeriesToModify;
@@ -43,6 +43,8 @@ public class ModifyController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        loadDataSeries();
 
         saveButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override

@@ -13,12 +13,14 @@ import java.io.FileReader;
 public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("MainWindow.fxml"));
-        Parent root = loader.load();
-        primaryStage.setTitle("ChartObject Generator");
-        primaryStage.setScene(new Scene(root, 750, 400));
-        primaryStage.setResizable(false);
-        primaryStage.show();
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("/MainWindow.fxml"));
+            fxmlLoader.setController(new MainWindowController());
+            Scene scene = new Scene((Parent) fxmlLoader.load(), 750, 400);
+            primaryStage.setTitle("ChartObject Generator");
+            primaryStage.setScene(scene);
+            primaryStage.setResizable(false);
+            primaryStage.show();
     }
 
     public static void main(String[] args) {

@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox prefHeight="350.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<HBox prefHeight="350.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox prefWidth="200.0">
          <children>
@@ -88,18 +88,18 @@
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <TextField GridPane.columnIndex="1" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField GridPane.columnIndex="3" />
-                  <TextField GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                  <TextField GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                  <Button mnemonicParsing="false" text="Generate" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                  <TextField GridPane.columnIndex="1" fx:id="xAxisLabel" />
+                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" fx:id="xAxisMaxValue" />
+                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" fx:id="xAxixMinUnit" />
+                  <TextField fx:id="yAxisLabel" GridPane.columnIndex="3" />
+                  <TextField fx:id="yAxisMaxValue" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                  <TextField fx:id="yAxisMinUnit" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                  <Button fx:id="generateButton" mnemonicParsing="false" text="Generate" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                      <font>
                         <Font name="System Bold" size="17.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" text="Previous" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                  <Button fx:id="previousPageButton" mnemonicParsing="false" text="Previous" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>

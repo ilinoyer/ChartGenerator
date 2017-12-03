@@ -45,11 +45,11 @@ public class MainWindowController implements Initializable{
         chartObject = new ChartObject();
     }
 
-    public MainWindowController(File dataFile, ChartObject chartObject)
+    public MainWindowController(ChartObject chartObject)
     {
         this.fileChooser = new FileChooser();
         this.chartObject = chartObject;
-        this.dataFile = dataFile;
+        this.dataFile = chartObject.getDataFile();
     }
 
     private void initChartTypeBox()

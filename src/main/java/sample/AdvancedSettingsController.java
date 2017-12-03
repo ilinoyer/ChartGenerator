@@ -5,12 +5,14 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseButton;
@@ -57,6 +59,12 @@ public class AdvancedSettingsController implements Initializable{
     @FXML
     private TextField yAxisMinUnit;
 
+    @FXML
+    private Button previousPageButton;
+
+    @FXML
+    private Button generateButton;
+
     public void initSeriesListView()
     {
         for(int i = 0; i < chartObject.getSeriesNumber(); i++){
@@ -71,7 +79,7 @@ public class AdvancedSettingsController implements Initializable{
 
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("/ModifyWindow.fxml"));
-            fxmlLoader.setController(new ModifyController(dataSeriesToModify, isChanged));
+            fxmlLoader.setController(new ModifyWindowController(dataSeriesToModify, isChanged));
             Scene scene = new Scene((Parent) fxmlLoader.load(), 400, 400);
             Stage stage = new Stage();
             stage.setResizable(false);
@@ -111,6 +119,45 @@ public class AdvancedSettingsController implements Initializable{
                         DataSeries dataSeriesToModify = seriesListView.getSelectionModel().getSelectedItem();
                         openModifyWindow(dataSeriesToModify);
                     }
+                }
+            }
+        });
+
+        previousPageButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try{
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("/MainWindow.fxml"));
+                    fxmlLoader.setController(new MainWindowController(chartObject));
+                    Scene scene = new Scene((Parent) fxmlLoader.load(), 750, 400);
+                    Stage thisStage = (Stage)previousPageButton.getScene().getWindow();
+                    thisStage.setResizable(false);
+                    thisStage.setScene(scene);
+
+                }catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        generateButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("/ChartWindow.fxml"));
+                    fxmlLoader.setController(new ChartWindowController(chartObject));
+                    Scene scene = new Scene((Parent) fxmlLoader.load(), 800, 600);
+                    Stage stage = new Stage();
+                    stage.setTitle("Chart");
+                    stage.setScene(scene);
+                    stage.show();
+
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
         });

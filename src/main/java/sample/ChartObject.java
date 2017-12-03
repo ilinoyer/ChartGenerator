@@ -12,6 +12,7 @@ public class ChartObject {
     private NumberAxis yAxis = new NumberAxis();
     private DataReader dataReader;
     private ArrayList<DataSeries> dataSeriesList;
+    private File dataFile;
 
 
 
@@ -27,6 +28,7 @@ public class ChartObject {
 
     public void initialize(String chartName, File dataFile, int seriesNumber)
     {
+        this.dataFile = dataFile;
         this.dataSeriesList = new ArrayList<>();
         this.seriesNumber = seriesNumber;
         dataReader = new DataReader(seriesNumber, dataFile);
@@ -72,5 +74,10 @@ public class ChartObject {
 
     public DataSeries getDataSeriesByIndex(int i) {
         return dataSeriesList.get(i);
+    }
+
+    public File getDataFile()
+    {
+        return dataFile;
     }
 }
