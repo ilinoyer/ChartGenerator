@@ -16,11 +16,9 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("MainWindow.fxml"));
         Parent root = loader.load();
         primaryStage.setTitle("ChartObject Generator");
-        primaryStage.setScene(new Scene(root, 600, 400));
+        primaryStage.setScene(new Scene(root, 750, 400));
         primaryStage.setResizable(false);
         primaryStage.show();
-        DataReader bufferedReader = new DataReader(2, new File("C:\\Users\\sojer\\Desktop\\file.txt"));
-        bufferedReader.loadData();
     }
 
     public static void main(String[] args) {

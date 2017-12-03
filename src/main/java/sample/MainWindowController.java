@@ -7,7 +7,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -20,7 +22,7 @@ import java.util.ResourceBundle;
 
 public class MainWindowController implements Initializable{
 
-    final FileChooser fileChooser = new FileChooser();
+    private  FileChooser fileChooser;
 
     private ChartObject chartObject;
     private File dataFile;
@@ -37,8 +39,18 @@ public class MainWindowController implements Initializable{
     @FXML
     private Button addFileButton;
 
-    @FXML
-    private Button settingsButton;
+    public MainWindowController()
+    {
+        fileChooser = new FileChooser();
+        chartObject = new ChartObject();
+    }
+
+    public MainWindowController(File dataFile, ChartObject chartObject)
+    {
+        this.fileChooser = new FileChooser();
+        this.chartObject = chartObject;
+        this.dataFile = dataFile;
+    }
 
     private void initChartTypeBox()
     {
@@ -65,47 +77,37 @@ public class MainWindowController implements Initializable{
             }
         });
 
-        settingsButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                try {
-
-                    FXMLLoader fxmlLoader = new FXMLLoader();
-                    fxmlLoader.setLocation(getClass().getResource("/AdvancedSettingsWindow.fxml"));
-                    fxmlLoader.setController(new AdvancedSettingsController());
-                    Scene scene = new Scene((Parent) fxmlLoader.load(), 750, 400);
-                    Stage stage = new Stage();
-                    stage.setResizable(false);
-                    stage.setTitle("Settings");
-                    stage.setScene(scene);
-                    stage.show();
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
 
         generateButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                chartObject = new ChartObject(chartTypeBox.getValue(), Integer.parseInt(seriesAmountBox.getValue()), dataFile);
-
-                try
+                if(dataFile != null)
                 {
-                    FXMLLoader fxmlLoader = new FXMLLoader();
-                    fxmlLoader.setLocation(getClass().getResource("/ChartWindow.fxml"));
-                    fxmlLoader.setController(new ChartController(chartObject));
-                    Scene scene = new Scene((Parent) fxmlLoader.load(), 1100, 500);
-                    Stage stage = new Stage();
-                    stage.setTitle("Chart Window");
-                    stage.setScene(scene);
-                    stage.show();
+                    chartObject.initialize(chartTypeBox.getValue(), dataFile, Integer.parseInt(seriesAmountBox.getValue()));
 
-                }catch(Exception e)
-                {
-                    e.printStackTrace();
+                    try{
+                        FXMLLoader fxmlLoader = new FXMLLoader();
+                        fxmlLoader.setLocation(getClass().getResource("/AdvancedSettingsWindow.fxml"));
+                        fxmlLoader.setController(new AdvancedSettingsController(chartObject));
+                        Scene scene = new Scene((Parent) fxmlLoader.load(), 750, 400);
+                        Stage thisStage = (Stage)generateButton.getScene().getWindow();
+                        thisStage.setResizable(false);
+                        thisStage.setScene(scene);
+
+                    }catch (Exception e)
+                    {
+                        e.printStackTrace();
+                    }
                 }
+                else{
+                    Alert alert = new Alert(Alert.AlertType.WARNING, "Select Data File!", ButtonType.OK);
+                    alert.showAndWait();
+
+                    if (alert.getResult() == ButtonType.OK) {
+                        alert.close();
+                    }
+                }
+
             }
         });
 

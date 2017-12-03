@@ -13,7 +13,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <HBox prefHeight="350.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox prefWidth="200.0">
@@ -29,7 +28,7 @@
             </AnchorPane>
             <AnchorPane>
                <children>
-                  <ListView AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0" />
+                  <ListView fx:id="seriesListView" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0" />
                </children>
             </AnchorPane>
          </children>
@@ -95,9 +94,14 @@
                   <TextField GridPane.columnIndex="3" />
                   <TextField GridPane.columnIndex="3" GridPane.rowIndex="1" />
                   <TextField GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                  <Button mnemonicParsing="false" text="Save" GridPane.columnSpan="4" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                  <Button mnemonicParsing="false" text="Generate" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                      <font>
-                        <Font name="System Bold" size="12.0" />
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" text="Previous" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
                      </font>
                   </Button>
                </children>

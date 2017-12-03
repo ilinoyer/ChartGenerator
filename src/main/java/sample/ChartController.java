@@ -22,5 +22,10 @@ public class ChartController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
             anchorPane.getChildren().add(chartObject.getChart());
+            anchorPane.setTopAnchor(chartObject.getChart(),0.0);
+            anchorPane.setBottomAnchor(chartObject.getChart(),0.0);
+            anchorPane.setLeftAnchor(chartObject.getChart(),0.0);
+            anchorPane.setRightAnchor(chartObject.getChart(),0.0);
+
     }
 }
