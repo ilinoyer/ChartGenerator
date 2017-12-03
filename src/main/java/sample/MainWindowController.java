@@ -73,6 +73,7 @@ public class MainWindowController implements Initializable{
         addFileButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Text file: *.txt", "*.txt"));
                 dataFile = fileChooser.showOpenDialog(seriesAmountBox.getScene().getWindow());
             }
         });

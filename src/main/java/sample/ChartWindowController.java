@@ -9,6 +9,7 @@ import javafx.scene.SnapshotParameters;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.WritableImage;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
 
 import javax.imageio.ImageIO;
 import java.io.File;
@@ -19,6 +20,7 @@ import java.util.ResourceBundle;
 public class ChartWindowController implements Initializable {
 
     private ChartObject chartObject;
+    private FileChooser fileChooser;
 
     @FXML
     private AnchorPane anchorPane;
@@ -29,6 +31,7 @@ public class ChartWindowController implements Initializable {
     public ChartWindowController(ChartObject chartObject)
     {
         this.chartObject = chartObject;
+        this.fileChooser = new FileChooser();
     }
 
     @Override
@@ -43,8 +46,10 @@ public class ChartWindowController implements Initializable {
             saveAs.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
+
                     WritableImage image = chartObject.getChart().snapshot(new SnapshotParameters(), null);
-                    File file = new File("C:\\Users\\sojer\\Desktop\\chart.png");
+                    fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image File (*.png)", "*.png"));
+                    File file = fileChooser.showSaveDialog(anchorPane.getScene().getWindow());
                     try {
                         ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
                     } catch (IOException e) {
