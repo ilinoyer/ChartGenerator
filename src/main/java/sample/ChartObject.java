@@ -80,4 +80,46 @@ public class ChartObject {
     {
         return dataFile;
     }
+
+    public void setXLabel(String label)
+    {
+        xAxis.setLabel(label);
+    }
+
+    public void setYLabel(String label)
+    {
+        this.yAxis.setLabel(label);
+    }
+
+    public void setXAxisMaxValue(double maxValue)
+    {
+        xAxis.setUpperBound(maxValue);
+    }
+
+    public void setYAxisMaxValue(double maxValue)
+    {
+        yAxis.setUpperBound(maxValue);
+    }
+
+    public void setXAxisMinUnit(double minUnit)
+    {
+        xAxis.setTickUnit(minUnit);
+    }
+
+    public void setYAxisMinUnit(double minUnit)
+    {
+        yAxis.setTickUnit(minUnit);
+    }
+
+    public void setXAxisAutoRanging(boolean value)
+    {
+        xAxis.setAutoRanging(value);
+    }
+
+    public void setYAxisAutoRanging(boolean value)
+    {
+        yAxis.setAutoRanging(value);
+
+    }
+
 }

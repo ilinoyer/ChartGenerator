@@ -12,9 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -65,7 +63,10 @@ public class AdvancedSettingsController implements Initializable{
     @FXML
     private Button generateButton;
 
-    public void initSeriesListView()
+    @FXML
+    private CheckBox autoRanging;
+
+    private void initSeriesListView()
     {
         for(int i = 0; i < chartObject.getSeriesNumber(); i++){
             seriesObservableList.add(chartObject.getDataSeriesByIndex(i));
@@ -96,6 +97,77 @@ public class AdvancedSettingsController implements Initializable{
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+
+    private SimpleBooleanProperty loadChartParameters()
+    {
+        SimpleBooleanProperty parametersCorrectness = new SimpleBooleanProperty(true);
+        chartObject.setYAxisAutoRanging(true);
+        chartObject.setXAxisAutoRanging(true);
+
+        if(xAxisLabel.getText() != null && !xAxisLabel.getText().isEmpty())
+            chartObject.setXLabel(xAxisLabel.getText());
+
+        if(yAxisLabel.getText() != null && !yAxisLabel.getText().isEmpty())
+            chartObject.setYLabel(yAxisLabel.getText());
+
+        if(!autoRanging.isSelected()) {
+
+            chartObject.setYAxisAutoRanging(false);
+            chartObject.setXAxisAutoRanging(false);
+
+            if (yAxisMaxValue.getText() != null && !yAxisMaxValue.getText().isEmpty()) {
+
+                try {
+                    Double maxValue = Double.parseDouble(yAxisMaxValue.getText());
+                    chartObject.setYAxisMaxValue(maxValue);
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
+                    AlertDialog.showAlert("Enter valid yAxisMaxValue ! ", Alert.AlertType.ERROR);
+                    parametersCorrectness.setValue(false);
+
+                }
+            }
+
+            if (xAxisMaxValue.getText() != null && !xAxisMaxValue.getText().isEmpty()) {
+
+                try {
+                    Double maxValue = Double.parseDouble(xAxisMaxValue.getText());
+                    chartObject.setXAxisMaxValue(maxValue);
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
+                    AlertDialog.showAlert("Enter valid xAxisMaxValue ! ", Alert.AlertType.ERROR);
+                    parametersCorrectness.setValue(false);
+                }
+            }
+
+            if (yAxisMinUnit.getText() != null && !yAxisMinUnit.getText().isEmpty()) {
+
+                try {
+                    Double minUnit = Double.parseDouble(yAxisMinUnit.getText());
+                    chartObject.setYAxisMinUnit(minUnit);
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
+                    AlertDialog.showAlert("Enter valid yAxisMinUnit ! ", Alert.AlertType.ERROR);
+                    parametersCorrectness.setValue(false);
+                }
+            }
+
+            if (xAxixMinUnit.getText() != null && !xAxixMinUnit.getText().isEmpty()) {
+
+                try {
+                    Double minUnit = Double.parseDouble(xAxixMinUnit.getText());
+                    chartObject.setXAxisMinUnit(minUnit);
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
+                    AlertDialog.showAlert("Enter valid xAxisMinUnit ! ", Alert.AlertType.ERROR);
+                    parametersCorrectness.setValue(false);
+                }
+            }
+        }
+
+        return parametersCorrectness;
     }
 
     @Override
@@ -145,19 +217,43 @@ public class AdvancedSettingsController implements Initializable{
         generateButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                try {
 
-                    FXMLLoader fxmlLoader = new FXMLLoader();
-                    fxmlLoader.setLocation(getClass().getResource("/ChartWindow.fxml"));
-                    fxmlLoader.setController(new ChartWindowController(chartObject));
-                    Scene scene = new Scene((Parent) fxmlLoader.load(), 800, 600);
-                    Stage stage = new Stage();
-                    stage.setTitle("Chart");
-                    stage.setScene(scene);
-                    stage.show();
+                if( loadChartParameters().getValue()) {
 
-                } catch (IOException e) {
-                    e.printStackTrace();
+                    try {
+
+                        FXMLLoader fxmlLoader = new FXMLLoader();
+                        fxmlLoader.setLocation(getClass().getResource("/ChartWindow.fxml"));
+                        fxmlLoader.setController(new ChartWindowController(chartObject));
+                        Scene scene = new Scene((Parent) fxmlLoader.load(), 800, 600);
+                        Stage stage = new Stage();
+                        stage.setTitle("Chart");
+                        stage.setScene(scene);
+                        stage.show();
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+
+        autoRanging.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                if(autoRanging.isSelected())
+                {
+                    xAxisMaxValue.setEditable(false);
+                    yAxisMaxValue.setEditable(false);
+                    xAxixMinUnit.setEditable(false);
+                    yAxisMinUnit.setEditable(false);
+                }
+                else if(!autoRanging.isSelected())
+                {
+                    xAxisMaxValue.setEditable(true);
+                    yAxisMaxValue.setEditable(true);
+                    xAxixMinUnit.setEditable(true);
+                    yAxisMinUnit.setEditable(true);
                 }
             }
         });
