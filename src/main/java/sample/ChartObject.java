@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.geometry.Side;
 import javafx.scene.chart.*;
 
 import java.io.File;
@@ -49,13 +50,21 @@ public class ChartObject {
                 break;
         }
 
+        for(int i = 0 ; i < seriesNumber; ++i)
+        {
+            dataSeriesList.add(new DataSeries(i + 1));
+        }
+        chart.setLegendVisible(true);
+    }
+
+    public void loadSeries()
+    {
         for(int i = 0; i < seriesNumber; ++i)
         {
-            chart.getData().add(dataReader.getSeries(i));
-            dataSeriesList.add(new DataSeries(i));
+            XYChart.Series<Double, Double> series = dataReader.getSeries(i);
+            series.setName(dataSeriesList.get(i).getLabel());
+            chart.getData().add(series);
         }
-
-
 
     }
 
@@ -120,6 +129,12 @@ public class ChartObject {
     {
         yAxis.setAutoRanging(value);
 
+    }
+
+    public void setChartTitle(String title)
+    {
+        chart.setTitle(title);
+        chart.setTitleSide(Side.TOP);
     }
 
 }

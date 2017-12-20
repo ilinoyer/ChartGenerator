@@ -17,7 +17,7 @@ public class Main extends Application {
             fxmlLoader.setLocation(getClass().getResource("/MainWindow.fxml"));
             fxmlLoader.setController(new MainWindowController());
             Scene scene = new Scene((Parent) fxmlLoader.load(), 750, 400);
-            primaryStage.setTitle("ChartObject Generator");
+            primaryStage.setTitle("Chart Generator");
             primaryStage.setScene(scene);
             primaryStage.setResizable(false);
             primaryStage.show();

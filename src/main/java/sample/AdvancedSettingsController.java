@@ -66,6 +66,9 @@ public class AdvancedSettingsController implements Initializable{
     @FXML
     private CheckBox autoRanging;
 
+    @FXML
+    private TextField chartTitle;
+
     private void initSeriesListView()
     {
         for(int i = 0; i < chartObject.getSeriesNumber(); i++){
@@ -165,7 +168,11 @@ public class AdvancedSettingsController implements Initializable{
                     parametersCorrectness.setValue(false);
                 }
             }
+
         }
+
+        if(chartTitle.getText() != null && !chartTitle.getText().isEmpty())
+            chartObject.setChartTitle(chartTitle.getText());
 
         return parametersCorrectness;
     }
@@ -219,7 +226,7 @@ public class AdvancedSettingsController implements Initializable{
             public void handle(ActionEvent event) {
 
                 if( loadChartParameters().getValue()) {
-
+                    chartObject.loadSeries();
                     try {
 
                         FXMLLoader fxmlLoader = new FXMLLoader();

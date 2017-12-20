@@ -49,14 +49,10 @@ public class ModifyWindowController implements Initializable{
         saveButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                dataSeriesToModify.setLabel(dataSeriesLabel.getText());
+                if(dataSeriesLabel.getText() != null && !dataSeriesLabel.getText().isEmpty())
+                    dataSeriesToModify.setLabel(dataSeriesLabel.getText());
 
-                Alert alert = new Alert(Alert.AlertType.NONE, "Data Series Modified.", ButtonType.OK);
-                alert.showAndWait();
-
-                if (alert.getResult() == ButtonType.OK) {
-                    alert.close();
-                }
+                AlertDialog.showAlert("Data Series Modified.", Alert.AlertType.NONE);
 
                 Stage stage = (Stage) saveButton.getScene().getWindow();
                 stage.close();

@@ -27,7 +27,6 @@ public class DataReader {
         for(int i = 0; i <= seriesNumber; ++i)
         {
             seriesArrayList.add(new XYChart.Series<>());
-            System.out.println("Dodano serie: " + i);
         }
 
 
@@ -45,7 +44,6 @@ public class DataReader {
                 for(int i = 0; i <= seriesNumber; ++i)
                 {
                     seriesArrayList.get(i).getData().add(new XYChart.Data<>(Double.parseDouble(splittedString.get(0)), Double.parseDouble(splittedString.get(i + 1))));
-                    System.out.println("Wczytano serie: " + i);
                 }
             }
             scanner.close();

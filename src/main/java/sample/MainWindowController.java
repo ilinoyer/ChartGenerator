@@ -101,12 +101,7 @@ public class MainWindowController implements Initializable{
                     }
                 }
                 else{
-                    Alert alert = new Alert(Alert.AlertType.WARNING, "Select Data File!", ButtonType.OK);
-                    alert.showAndWait();
-
-                    if (alert.getResult() == ButtonType.OK) {
-                        alert.close();
-                    }
+                    AlertDialog.showAlert("Select Data File!", Alert.AlertType.WARNING);
                 }
 
             }
